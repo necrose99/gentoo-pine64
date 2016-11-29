@@ -136,7 +136,7 @@ DEPEND="${COMMON_DEP} ${ALSA_COMMON_DEP} ${CUPS_COMMON_DEP} ${X_COMMON_DEP} ${X_
 		dev-java/icedtea-bin:7
 		dev-java/icedtea:8
 		dev-java/icedtea:7
-		dev-java/oracle-jdk-bin:8
+		dev-java/oracle-jdk-bin:1.8
 	)
 	app-arch/cpio
 	app-arch/unzip
