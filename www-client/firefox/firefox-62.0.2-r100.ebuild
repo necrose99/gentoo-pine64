@@ -36,14 +36,14 @@ inherit check-reqs flag-o-matic toolchain-funcs eutils gnome2-utils llvm \
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="https://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~arm64 ~x86"
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="bindist clang dbus debug eme-free geckodriver +gmp-autoupdate hardened hwaccel
 	jack lto neon pulseaudio +screenshot selinux startup-notification
 	system-harfbuzz system-icu system-jpeg system-libevent system-sqlite
-	system-libvpx test wifi"
+	system-libvpx test webrtc wifi"
 RESTRICT="!bindist? ( bindist )"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
@@ -428,6 +428,11 @@ src_configure() {
 
 	echo "mk_add_options MOZ_OBJDIR=${BUILD_OBJ_DIR}" >> "${S}"/.mozconfig
 	echo "mk_add_options XARGS=/usr/bin/xargs" >> "${S}"/.mozconfig
+
+	# Allow building without webrtc
+	if ! use webrtc; then
+		mozconfig_annotate '' --disable-webrtc
+	fi
 
 	# Finalize and report settings
 	mozconfig_final
