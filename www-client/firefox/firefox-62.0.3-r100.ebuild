@@ -43,7 +43,7 @@ LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="bindist clang dbus debug eme-free geckodriver +gmp-autoupdate hardened hwaccel
 	jack lto neon pulseaudio +screenshot selinux startup-notification
 	system-harfbuzz system-icu system-jpeg system-libevent system-sqlite
-	system-libvpx test wifi"
+	system-libvpx test webrtc wifi"
 RESTRICT="!bindist? ( bindist )"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
