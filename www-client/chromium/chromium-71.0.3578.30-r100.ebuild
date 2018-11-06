@@ -378,6 +378,10 @@ src_prepare() {
 
 	# Remove most bundled libraries. Some are still needed.
 	build/linux/unbundle/remove_bundled_libraries.py "${keeplibs[@]}" --do-remove || die
+
+	if use arm64; then
+		eapply "${FILESDIR}/aarch64-skia-build-fix.patch"
+	fi
 }
 
 src_configure() {
