@@ -17,7 +17,7 @@ SRC_URI="https://commondatastorage.googleapis.com/chromium-browser-official/${P}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64 ~x86 ~arm64"
 IUSE="+closure-compile component-build cups gnome-keyring +hangouts jumbo-build kerberos neon pic +proprietary-codecs pulseaudio selinux +suid +system-ffmpeg +system-icu +system-libvpx +tcmalloc widevine"
 RESTRICT="!system-ffmpeg? ( proprietary-codecs? ( bindist ) )"
 
@@ -109,7 +109,8 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-: ${CHROMIUM_FORCE_CLANG=no}
+# arm64 has several build failures under gcc
+: ${CHROMIUM_FORCE_CLANG=yes}
 
 if [[ ${CHROMIUM_FORCE_CLANG} == yes ]]; then
 	BDEPEND+=" >=sys-devel/clang-5"
@@ -141,6 +142,7 @@ GTK+ icon theme.
 PATCHES=(
 	"${FILESDIR}/chromium-compiler-r7.patch"
 	"${FILESDIR}/chromium-widevine-r4.patch"
+	"${FILESDIR}/chromium-crashpad.patch"
 )
 
 pre_build_checks() {
@@ -328,6 +330,7 @@ src_prepare() {
 		third_party/SPIRV-Tools
 		third_party/sqlite
 		third_party/swiftshader
+		third_party/swiftshader/third_party/llvm-7.0
 		third_party/swiftshader/third_party/llvm-subzero
 		third_party/swiftshader/third_party/subzero
 		third_party/unrar
