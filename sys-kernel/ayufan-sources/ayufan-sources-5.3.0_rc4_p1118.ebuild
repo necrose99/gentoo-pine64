@@ -19,6 +19,8 @@ inherit git-r3 versionator
 EGIT_REPO_URI="https://github.com/ayufan-rock64/linux-mainline-kernel.git"
 EGIT_BRANCH="master"
 EGIT_COMMIT="5.3.0-rc4-1118-ayufan"
+EGIT_CHECKOUT_DIR="${WORKDIR}/linux-${PV}-ayufan"
+S="${WORKDIR}/linux-${PV}-ayufan"
 
 DESCRIPTION="Rock64 kernel sources"
 HOMEPAGE="https://github.com/ayufan-rock64/linux-mainline-kernel"
