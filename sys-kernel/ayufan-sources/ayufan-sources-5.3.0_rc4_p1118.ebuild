@@ -5,6 +5,7 @@
 EAPI=6
 
 inherit eapi7-ver
+inherit kernel-2 #do gentoo patches
 
 ETYPE=sources
 CKV="$(ver_cut 1-3)"
